@@ -99,8 +99,6 @@
 
 ![Table 3-style global result](figures/table_3-style_global_cifar10.png)
 
-
-
 在 global 模型上，`our_conf` 在低误报区间表现最强：
 
 - `TPR @ 0.1% FPR = 7.2000%`；
