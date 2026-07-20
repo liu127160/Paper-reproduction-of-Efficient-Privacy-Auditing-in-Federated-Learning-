@@ -76,8 +76,11 @@
 ### 4.1 置信度轨迹与斜率分布
 
 论文中：
+
 ![输入图片说明](/figure1.png)
+
 本次复现：
+
 ![Figure 1-style result](figures/figure1_local_confidence_slope_hist.png)
 
 图中以 client 0 的 local 模型为例：成员样本的平均 confidence 整体高于非成员；在第 30 轮时，成员的单样本 confidence 斜率分布整体更靠右。二者虽然存在重叠，但已形成可利用的区分信号。
