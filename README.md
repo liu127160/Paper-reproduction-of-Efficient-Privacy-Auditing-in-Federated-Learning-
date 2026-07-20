@@ -3,6 +3,7 @@
 > 论文：**Efficient Privacy Auditing in Federated Learning**（USENIX Security 2024）  
 > 官方代码：[changhongyan123/privacy_auditing_in_FL](https://github.com/changhongyan123/privacy_auditing_in_FL)  
 > 论文页面：[USENIX Security 2024](https://www.usenix.org/conference/usenixsecurity24/presentation/chang)
+> 
 > 复现者：刘明鑫
 
 ## 1. 复现工作概述
