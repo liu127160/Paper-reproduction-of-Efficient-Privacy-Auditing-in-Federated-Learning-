@@ -1,0 +1,11 @@
+- data=cifar10
+- random_seed=0
+- num_gpus=1
+- fl.num_parties=2
+- fl.model=resnet56
+- fl.comm_round=2
+- fl.epochs=1
+- fl.train_batch_size=32
+- fl.batch_size=32
+- save_models=True
+- save_client=0

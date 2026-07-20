@@ -1,0 +1,60 @@
+name: auditing_in_fl
+
+# Rebuilt from the original, unmodified environment.yml supplied by the user.
+# This is intentionally a project environment, not a workstation export.
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+
+dependencies:
+  - python=3.9
+  - pip
+  # run_mpi.sh starts one server and N client processes.
+  - mpi=1.0=openmpi
+  - openmpi=4.1.5
+  - mpi4py=3.1.4
+
+  # Matches the original PyTorch/CUDA 12.1 combination for WSL2 with NVIDIA GPU.
+  - pytorch=2.1.1
+  - torchvision=0.16.1
+  - pytorch-cuda=12.1
+
+  # If there is no NVIDIA GPU in WSL2: remove pytorch-cuda above and uncomment:
+  # - cpuonly
+
+  - pip:
+      # Direct imports in the three paper scripts and their data loaders.
+      - numpy==1.24.4
+      - pandas==2.0.3
+      - scipy==1.8.0
+      - scikit-learn==1.3.0
+      - scikit-image==0.22.0
+      - pillow==9.4.0
+      - hydra-core==1.3.2
+      - omegaconf==2.3.0
+      - PyYAML==6.0.1
+      - jsonlines==4.0.0
+
+      # Required at import time by the repository's bundled, modified FedML.
+      - multiprocess==0.70.15
+      - wandb==0.13.2
+      - psutil==5.9.5
+      - requests==2.31.0
+      - boto3==1.28.11
+      - dill==0.3.7
+      - tqdm==4.65.0
+      - paho-mqtt==1.6.1
+      - grpcio==1.64.1
+      - protobuf==3.20.3
+      - docker==7.1.0
+      - GPUtil==1.4.0
+      - redis==4.6.0
+      - SQLAlchemy==2.0.19
+      - prettytable==3.12.0
+      - click==8.0.1
+      - toposort==1.10
+
+      # Intentionally absent: fedml.  This repository has its own modified
+      # ./fedml source tree (0.8.30); installing the original's fedml==0.8.7
+      # risks mixing two incompatible implementations.

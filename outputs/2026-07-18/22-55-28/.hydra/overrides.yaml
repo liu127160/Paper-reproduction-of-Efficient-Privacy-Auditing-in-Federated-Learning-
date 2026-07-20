@@ -1,0 +1,15 @@
+- data=cifar10
+- random_seed=0
+- fl.num_parties=4
+- fl.model=resnet56
+- fl.comm_round=100
+- fl.epochs=1
+- fl.train_batch_size=32
+- fl.test_batch_size=64
+- fl.batch_size=32
+- save_models=True
+- save_client=0
+- audit.party=0
+- audit.target_round=99
+- audit.start_round=0
+- audit.target_model_type=local

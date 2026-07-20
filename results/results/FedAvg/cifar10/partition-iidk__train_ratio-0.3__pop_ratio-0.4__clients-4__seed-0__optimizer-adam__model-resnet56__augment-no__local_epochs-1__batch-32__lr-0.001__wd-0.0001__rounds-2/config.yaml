@@ -1,0 +1,50 @@
+comm_args:
+  backend: MPI
+  is_mobile: 0
+common_args:
+  random_seed: 0
+  training_type: simulation
+data_args:
+  data_argu: 'no'
+  dataset: cifar10
+  dirichlet_alpha: 0.5
+  partitioning: iidk
+  pop_num: 1000
+  pop_ratio: 0.4
+  test_num: 2500
+  train_num: 2500
+  train_ratio: 0.3
+device_args:
+  gpu_mapping_file: results/results/FedAvg/cifar10/partition-iidk__train_ratio-0.3__pop_ratio-0.4__clients-4__seed-0__optimizer-adam__model-resnet56__augment-no__local_epochs-1__batch-32__lr-0.001__wd-0.0001__rounds-2/gpu_mapping.yaml
+  gpu_mapping_key: mapping_default
+  using_gpu: true
+  worker_num: 5
+model_args:
+  group_norm_channels: 32
+  model: resnet56
+save_path:
+  save_dir: ''
+  server_dir_path: results
+tracking_args:
+  enable_tracking: false
+  enable_wandb: false
+  save_client: 0
+  save_models: true
+  using_mlops: false
+  wandb_project: wandb_cifar10
+train_args:
+  batch_size: 32
+  client_id_list: '[]'
+  client_num_in_total: 4
+  client_num_per_round: 4
+  client_optimizer: adam
+  comm_round: 2
+  epochs: 1
+  federated_optimizer: FedAvg
+  learning_rate: 0.001
+  num_parties: 4
+  test_batch_size: 64
+  train_batch_size: 32
+  weight_decay: 0.0001
+validation_args:
+  frequency_of_the_test: 5

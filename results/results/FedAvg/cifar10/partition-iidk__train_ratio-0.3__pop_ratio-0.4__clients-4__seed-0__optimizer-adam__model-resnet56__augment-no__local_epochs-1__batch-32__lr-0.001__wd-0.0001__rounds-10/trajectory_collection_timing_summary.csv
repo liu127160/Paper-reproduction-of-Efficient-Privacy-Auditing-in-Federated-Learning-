@@ -1,0 +1,3 @@
+model_snapshot,mean_local_train_seconds_per_round,mean_snapshot_evaluation_seconds_per_round,collection_overhead_ratio,note
+global,19.7914,20.4083,1.0312,per-round wall-clock overhead of collecting the per-sample trajectory; this is not the complete audit time
+local,19.7914,20.3143,1.0264,per-round wall-clock overhead of collecting the per-sample trajectory; this is not the complete audit time

@@ -1,0 +1,14 @@
+__pycache__/
+*/__pycache__
+*/__pycache__/*
+# Local datasets and large per-sample trajectories: do not commit
+/results/data/
+/results/cifar10/data.pkl
+*_global_pred.jsonl
+*_local_pred.jsonl
+
+__pycache__/
+*.py[cod]
+
+# Upstream S3 test file contains detected credentials; keep it local only
+/fedml/core/distributed/communication/s3/local_s3_test.py

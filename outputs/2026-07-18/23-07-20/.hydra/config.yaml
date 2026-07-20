@@ -1,0 +1,40 @@
+data:
+  dataset: cifar10
+  train_num: 2500
+  test_num: 2500
+  pop_num: 1000
+  train_ratio: 0.3
+  test_ratio: 0.3
+  pop_ratio: 0.4
+fl:
+  num_parties: 4
+  partitioning: iidk
+  dirichlet_alpha: 0.5
+  federated_optimizer: FedAvg
+  epochs: 1
+  batch_size: 32
+  client_optimizer: adam
+  model: resnet56
+  data_argu: 'no'
+  comm_round: 100
+  train_batch_size: 32
+  learning_rate: 0.001
+  test_batch_size: 64
+  weight_decay: 0.0001
+audit:
+  alg: all
+  start_round: 0
+  gpu_id: 0
+  random_seed_list:
+  - 0
+  batch_size_test: 100
+  target_model_type: local
+  target_round: 39
+  party: 0
+  num_repeat: 10
+num_gpus: 2
+server_dir_path: results
+random_seed: 0
+template_file_name: config/config_mpi_template.yaml
+save_models: true
+save_client: 0
