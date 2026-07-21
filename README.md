@@ -1,3 +1,4 @@
+
 # Efficient Privacy Auditing in Federated Learning：复现报告
 
 > 论文：**Efficient Privacy Auditing in Federated Learning**（USENIX Security 2024）  
@@ -47,7 +48,7 @@
 - `test`：未参与该客户端训练的样本，记为非成员；
 - `rest`：额外的非成员参考集，用于构造参考分布。
 
-对每个样本，保存其跨轮变化的 `loss`、正确类别 `confidence`、`rescaled logit` 与预测正确性等。审计阶段利用这些轨迹构造分数，并扫描阈值得到 ROC、AUC 和低 FPR 下的 TPR。
+对每个样本，保存其跨轮变化的 `loss`、正确类别 `confidence`、`rescaled logit` 与预测正确性等信息。审计阶段利用这些轨迹构造分数，并扫描阈值得到 ROC、AUC 和低 FPR 下的 TPR。
 
 论文提出的 FTA 分数在代码中对应：
 
@@ -84,9 +85,9 @@
 ![Table 2-style local result](figures/table_2-style_local_cifar10.png)
 
 在本次单次运行、client 0、100 轮的设置下：
-- 在 `FPR 限制严格的条件下，`FTA` 的 TPR 优于所有基线。
+- 在 `FPR 限制严格的条件下，`FTA` 的 TPR 优于大多数基线。
 
-这说明 FTA 的轨迹斜率在本地模型审计中能够提供有效成员信号。但本磁复现不是论文的全客户端、5 次独立运行平均值。
+这说明 FTA 的轨迹斜率在本地模型审计中能够提供有效成员信号。
 
 ### 3.3 Global 模型审计结果
 
@@ -105,7 +106,7 @@
 - `TPR @ 0.5% FPR = 10.9556%`；
 - `TPR @ 1% FPR = 13.9111%`。
 
-该趋势与论文的一致：使用训练过程中的多轮轨迹，尤其是 confidence 的变化趋势，可以比仅观察最终模型或简单平均分数更有效地审计隐私风险。
+该趋势与论文的一致：使用训练过程中的多轮轨迹，**尤其是 confidence 的变化趋势**，可以比仅观察最终模型或简单平均分数更有效地审计隐私风险。
 
 ### 3.4 随训练推进的风险变化
 
@@ -113,7 +114,7 @@
 
 ![TPR at low FPR versus rounds](figures/tpr_at_fpr_0_5_vs_rounds_global_local.png)
 
-这两张图分别展示整体可分性（AUC）和严格低误报条件下的实际攻击能力（TPR@0.5% FPR）如何随通信轮数变化，并比较 global 与 local 模型。
+这两张图分别展示整体可分性（AUC）和严格低误报条件下的实际攻击能力（TPR@0.5% FPR）如何随通信轮数变化。由上面俩组图也可看出：在本次 CIFAR-10、4 客户端、client 0、seed 0 的复现实验中，FTA 的 `confidence slope`（`our_conf`）在 global 和 local 模型上均表现出最显著的低误报成员推断能力；但 FTA 的 loss 与 rescaled-logit 变体并非在所有设置下都优于其他方法，这一点论文所给表格也有所体现。
 
 ---
 
@@ -193,6 +194,7 @@ python plot_reproduction_results.py
 
 1. 论文结果是跨客户端、5 次独立运行的平均；本仓库展示的是 **seed 0、client 0、单次运行** 的结果，因此不应期待逐项数值完全一致。
 2. 本机仅有 RTX 3050 4 GB 显存。4 个客户端共享 GPU 时，默认 `fl.test_batch_size=1000` 会造成资源压力；本复现使用 `64`。
-4. 原始逐样本预测轨迹 `0_global_pred.jsonl`、`0_local_pred.jsonl` 与 CIFAR-10 原始数据体积较大，未提交至普通 Git 仓库；它们可通过上述训练命令重新生成。仓库保留最终审计 CSV、图表和配置文件作为复现实验产物。
+3. 原始逐样本预测轨迹 `0_global_pred.jsonl`、`0_local_pred.jsonl` 与 CIFAR-10 原始数据体积较大，未提交至普通 Git 仓库；它们可通过上述训练命令重新生成。仓库保留最终审计 CSV、图表和配置文件作为复现实验产物。
+
 
 ---
